@@ -1,0 +1,37 @@
+# Summary
+
+* This is a patch for <http://svnweb.freebsd.org/ports/head/editors/vim/Makefile?revision=335790>
+  (Ports editors/vim r335790)
+  to fix the following error when lua is being invoked from vim:
+
+        E370: Could not load library liblua-5.1
+        Lua library cannot be loaded.
+
+* Two files are changed: Makefile and files/patch-configure
+
+## on Makefile
+
+* Change CONF_OPT_LUA_PREFIX using ${LOCALBASE} to ${LUA_PREFIX}
+  since <bsd.lua.mk> is assumed 
+
+* /usr/ports/Mk/Uses/iconv.mk handles existence and non-existence of
+  libiconv.so: always enable "USES+= iconv"
+
+## on files/patch-configure
+
+* Rebuild from 7.4.110 src/auto/configure
+* move definition of "vi_cv_version_lua=${LUA_VER}"
+* add .so to "-DDYNAMIC_LUA_DLL=\\\"liblua-${vi_cv_version_lua}.so\\\" in LUA_CFLAGS
+  for properly loading the shared library of lua from /usr/local/lib/liblua-${LUA_VER}.so
+
+## environment
+
+* `uname -a` result:
+
+        FreeBSD wellmax.priv.k2r.org 10.0-BETA4 FreeBSD 10.0-BETA4 #18 r258903: Wed Dec  4 12:31:36 JST 2013 root@wellmax.priv.k2r.org:/usr/obj/usr/src/sys/K2RKERNEL  amd64
+
+## Patch author
+
+* Kenji Rikitake <kenji@k2r.org>
+
+[End of memorandum]
