@@ -27,14 +27,16 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $vi_cv_version_plain_lua" >&5
  $as_echo "$vi_cv_version_plain_lua" >&6; }
-@@ -4862,6 +4862,7 @@
+@@ -4862,7 +4862,8 @@
        fi
      else
        if test "X$LUA_INC" != "X"; then
-+      		vi_cv_version_lua=${LUA_VER}
- 		LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua$vi_cv_version_lua"
+-		LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua$vi_cv_version_lua"
++		vi_cv_version_lua=${LUA_VER}
++		LUA_LIBS="-L${LUA_LIBDIR} -llua"
        else
- 	LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua"
+        LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua"
+       fi
 @@ -4897,7 +4898,7 @@
        LIBS=$libs_save
      fi

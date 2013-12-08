@@ -95,10 +95,17 @@ USE_TCL=	85+
 MAKE_ARGS+=	CONF_OPT_TCL="--enable-tclinterp --with-tclsh="${TCLSH:S/${LOCALBASE}\/bin\///g}""
 .endif
 
+#.if ${PORT_OPTIONS:MLUA}
+#USE_LUA=	yes
+#MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp=dynamic"
+#MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LUA_PREFIX}"
+#.endif
+
 .if ${PORT_OPTIONS:MLUA}
 USE_LUA=	yes
-MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp=dynamic"
+MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp"
 MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LUA_PREFIX}"
+MAKE_ARGS+= EXTRA_LIBS="$(EXTRA_LIBS) -L${LUA_SUBDIR} -llua"
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
