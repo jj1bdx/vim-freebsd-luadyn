@@ -95,17 +95,26 @@ USE_TCL=	85+
 MAKE_ARGS+=	CONF_OPT_TCL="--enable-tclinterp --with-tclsh="${TCLSH:S/${LOCALBASE}\/bin\///g}""
 .endif
 
+# for 5.1 dynamic
 #.if ${PORT_OPTIONS:MLUA}
 #USE_LUA=	yes
 #MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp=dynamic"
 #MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LUA_PREFIX}"
 #.endif
 
+# for 5.1
+#.if ${PORT_OPTIONS:MLUA}
+#USE_LUA=	yes
+#MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp"
+#MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LUA_PREFIX}"
+#MAKE_ARGS+= EXTRA_LIBS="$(EXTRA_LIBS) -L${LUA_SUBDIR} -llua"
+#.endif
+
+# for 5.2
 .if ${PORT_OPTIONS:MLUA}
-USE_LUA=	yes
 MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp"
-MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LUA_PREFIX}"
-MAKE_ARGS+= EXTRA_LIBS="$(EXTRA_LIBS) -L${LUA_SUBDIR} -llua"
+MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=/usr/local"
+MAKE_ARGS+= EXTRA_LIBS="$(EXTRA_LIBS) -L/usr/local/lib/lua52 -llua"
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
@@ -185,7 +194,7 @@ pre-configure:
 		s|\$$gtk_config_prefix/bin/gtk-config|\$${GTK_CONFIG}|g; \
 		s|\$$gtk_config_exec_prefix/bin/gtk-config|\$${GTK_CONFIG}|g; \
 		s|/usr/local|${LOCALBASE}|g; \
-		s|set dummy lua;|set dummy lua-${LUA_VER};|g' \
+		s|set dummy lua;|set dummy lua-5.2;|g' \
 		${WRKSRC}/auto/configure
 .if ${PORT_OPTIONS:MXTERM_SAVE}
 	@${REINPLACE_CMD} -e ' \
