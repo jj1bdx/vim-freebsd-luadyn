@@ -33,7 +33,7 @@
        if test "X$LUA_INC" != "X"; then
 -		LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua$vi_cv_version_lua"
 +		vi_cv_version_lua=5.2
-+		LUA_LIBS="-L/usr/local/lib/lua52 -llua"
++		LUA_LIBS="-L/usr/local/lib -llua-5.2"
        else
         LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua"
        fi
