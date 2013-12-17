@@ -141,7 +141,7 @@ USE_XORG+=	xaw
 . if ${PORT_OPTIONS:MGTK2}
 USE_GNOME=	gtk20
 CONF_OPT_GUI="--enable-gui=gtk2 --with-gtk-prefix=${LOCALBASE}"
-MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
+MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lX11 -lXt"
 USE_XORG+=	xt
 . endif
 
