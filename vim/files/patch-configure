@@ -1,5 +1,5 @@
---- auto/configure.orig	2013-12-08 09:19:43.000000000 +0900
-+++ auto/configure	2013-12-08 09:21:36.000000000 +0900
+--- auto/configure.orig	2013-10-17 12:11:54.000000000 +0200
++++ auto/configure	2013-10-17 12:12:56.000000000 +0200
 @@ -858,7 +858,7 @@
  psdir='${docdir}'
  libdir='${exec_prefix}/lib'
@@ -9,7 +9,7 @@
  
  ac_prev=
  ac_dashdash=
-@@ -4752,7 +4752,7 @@
+@@ -4739,7 +4739,7 @@
  if test "${vi_cv_version_lua_luajit+set}" = set; then :
    $as_echo_n "(cached) " >&6
  else
@@ -18,7 +18,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $vi_cv_version_lua_luajit" >&5
  $as_echo "$vi_cv_version_lua_luajit" >&6; }
-@@ -4806,7 +4806,7 @@
+@@ -4793,7 +4793,7 @@
  if test "${vi_cv_version_plain_lua+set}" = set; then :
    $as_echo_n "(cached) " >&6
  else
@@ -27,15 +27,7 @@
  fi
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $vi_cv_version_plain_lua" >&5
  $as_echo "$vi_cv_version_plain_lua" >&6; }
-@@ -4862,6 +4862,7 @@
-       fi
-     else
-       if test "X$LUA_INC" != "X"; then
-+      		vi_cv_version_lua=${LUA_VER}
- 		LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua$vi_cv_version_lua"
-       else
- 	LUA_LIBS="-L${vi_cv_path_lua_pfx}/lib -llua"
-@@ -4897,7 +4898,7 @@
+@@ -4884,7 +4884,7 @@
        LIBS=$libs_save
      fi
      if test "x$lua_ok" = "xyes"; then
@@ -44,16 +36,17 @@
        LUA_SRC="if_lua.c"
        LUA_OBJ="objects/if_lua.o"
        LUA_PRO="if_lua.pro"
-@@ -4954,7 +4955,7 @@
+@@ -4941,7 +4941,8 @@
        $as_echo "#define DYNAMIC_LUA 1" >>confdefs.h
  
        LUA_LIBS=""
 -      LUA_CFLAGS="-DDYNAMIC_LUA_DLL=\\\"${vi_cv_dll_name_lua}\\\" $LUA_CFLAGS"
++      vi_cv_version_lua=${LUA_VER}
 +      LUA_CFLAGS="-DDYNAMIC_LUA_DLL=\\\"liblua-${vi_cv_version_lua}.so\\\" $LUA_CFLAGS"
      fi
      if test "X$LUA_CFLAGS$LUA_LIBS" != "X" && \
         test "x$MACOSX" = "xyes" && test "x$vi_cv_with_luajit" != "xno" && \
-@@ -6623,7 +6624,7 @@
+@@ -6610,7 +6611,7 @@
  $as_echo "$try/tclConfig.sh" >&6; }
  	    . $try/tclConfig.sh
  	    	    TCL_LIBS=`eval echo "$TCL_LIB_SPEC $TCL_LIBS"`
