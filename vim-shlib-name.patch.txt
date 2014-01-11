@@ -1,0 +1,11 @@
+--- files/OLD/patch-configure.orig	2013-12-03 04:48:37.000000000 +0900
++++ files/patch-configure	2014-01-11 09:28:58.000000000 +0900
+@@ -42,7 +42,7 @@
+        LUA_LIBS=""
+ -      LUA_CFLAGS="-DDYNAMIC_LUA_DLL=\\\"${vi_cv_dll_name_lua}\\\" $LUA_CFLAGS"
+ +      vi_cv_version_lua=${LUA_VER}
+-+      LUA_CFLAGS="-DDYNAMIC_LUA_DLL=\\\"liblua-${vi_cv_version_lua}\\\" $LUA_CFLAGS"
+++      LUA_CFLAGS="-DDYNAMIC_LUA_DLL=\\\"liblua-${vi_cv_version_lua}.so\\\" $LUA_CFLAGS"
+      fi
+      if test "X$LUA_CFLAGS$LUA_LIBS" != "X" && \
+         test "x$MACOSX" = "xyes" && test "x$vi_cv_with_luajit" != "xno" && \
