@@ -1,5 +1,7 @@
 # FreeBSD vim experimental port for adding if\_lua
 
+* 20-FEB-2014: editors/vim 7.4.182 *broke* the Lua dynamic code loading *again*. Fix included in the master branch.
+
 * 12-FEB-2014: PRs 185650 and 184588 merged by Martin Wilke, as editors/vim 7.4.169_1. Thanks Martin!
     * See also <http://docs.freebsd.org/cgi/getmsg.cgi?fetch=2591121+0+current/svn-ports-head>
 
@@ -13,4 +15,4 @@
     * dev-dynamic-lua51: OLD, dynamically linking lua 5.1 (lang/lua)
     * dev-static-lua51: OLD, statically linking lua 5.1 (lang/lua)
     * dev-static-lua52: OLD, statically linking lua 5.2 (lang/lua52)
-    * master: dynamically linking lua 5.2 (lang/lua52, following Port vim-7.4.169)
+    * master: dynamically linking lua 5.2 (lang/lua52, following Port vim-7.4.182)
