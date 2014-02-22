@@ -1,5 +1,5 @@
 # Created by: David O'Brien <obrien@cs.ucdavis.edu>
-# $FreeBSD: head/editors/vim/Makefile 345103 2014-02-19 15:27:58Z sunpoet $
+# $FreeBSD: head/editors/vim/Makefile 345240 2014-02-20 14:44:42Z sunpoet $
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
@@ -19,8 +19,8 @@ MAINTAINER?=	sunpoet@FreeBSD.org
 COMMENT?=	Vi "workalike", with many additional features
 
 OPTIONS_DEFINE=	CSCOPE EXUBERANT_CTAGS LUA NLS PERL PYTHON RUBY TCL XTERM_SAVE
-OPTIONS_RADIO=	UI
-OPTIONS_RADIO_UI=	ATHENA CONSOLE GNOME GTK2 MOTIF X11
+OPTIONS_SINGLE=	UI
+OPTIONS_SINGLE_UI=	ATHENA CONSOLE GNOME GTK2 MOTIF X11
 OPTIONS_SUB=	yes
 ATHENA_DESC=		Athena GUI toolkit
 CSCOPE_DESC=		cscope support
@@ -108,6 +108,10 @@ TCL_USES=		tcl:85+
 X11_MAKE_ARGS=		CONF_OPT_GUI="--enable-gui=no --with-x" X_LIBS="$(X_LIBS) -lX11 -lXt"
 
 .include <bsd.port.options.mk>
+
+.if !${PORT_OPTIONS:MATHENA} && !${PORT_OPTIONS:MCONSOLE} && !${PORT_OPTIONS:MGNOME} && !${PORT_OPTIONS:MGTK2} && !${PORT_OPTIONS:MMOTIF} && !${PORT_OPTIONS:MX11}
+IGNORE=		this port has new UI option (CONSOLE) for users who do not need GUI support. Please run "make config" to modify your setting
+.endif
 
 .if ${PORT_OPTIONS:MCONSOLE}
 PLIST_SUB+=	GUI="@comment "
