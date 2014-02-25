@@ -1,6 +1,8 @@
 # FreeBSD vim experimental port for adding if\_lua
 
-* 20-FEB-2014: editors/vim 7.4.182 *broke* the Lua dynamic code loading *again*. Fix included in the master branch.
+* 25-FEB-2014: PR 186917 merged to editors/vim 7.4.182_1 by Sunpoet Po-Chuan Hsieh. Thank Sunpoet! The master branch is a copy of 7.4.182_1 port r345889.
+
+* 20-FEB-2014: editors/vim 7.4.182 *broke* the Lua dynamic code loading *again*. Fix included in the master branch. See also PR ports/186917 <http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/186917>
 
 * 12-FEB-2014: PRs 185650 and 184588 merged by Martin Wilke, as editors/vim 7.4.169_1. Thanks Martin!
     * See also <http://docs.freebsd.org/cgi/getmsg.cgi?fetch=2591121+0+current/svn-ports-head>
