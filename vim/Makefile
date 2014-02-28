@@ -1,5 +1,5 @@
 # Created by: David O'Brien <obrien@cs.ucdavis.edu>
-# $FreeBSD: head/editors/vim/Makefile 345889 2014-02-24 18:44:16Z sunpoet $
+# $FreeBSD: head/editors/vim/Makefile 346444 2014-02-28 07:26:34Z sunpoet $
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
@@ -16,7 +16,7 @@ PATCH_SITES=	${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|} \
 		LOCAL/sunpoet/${PORTNAME}
 
 MAINTAINER?=	sunpoet@FreeBSD.org
-COMMENT?=	Vi "workalike", with many additional features
+COMMENT?=	Improved version of the vi editor
 
 OPTIONS_DEFINE=	CSCOPE EXUBERANT_CTAGS LUA NLS PERL PYTHON RUBY TCL XTERM_SAVE
 OPTIONS_SINGLE=	UI
@@ -38,7 +38,7 @@ USE_BZIP2=	yes
 USES=		iconv pkgconfig shebangfix
 WANT_GNOME=	yes
 
-PATCHLEVEL=	182
+PATCHLEVEL=	192
 PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
 BADPATCHES=	064 087 147 # empty
 .for p in ${BADPATCHES}
@@ -96,6 +96,8 @@ LUA_MAKE_ARGS=		CONF_OPT_LUA=--enable-luainterp=dynamic CONF_OPT_LUA_PREFIX=--wi
 LUA_USES=		lua
 MOTIF_MAKE_ARGS=	CONF_OPT_GUI='--enable-gui=motif --with-motif-lib="${MOTIFLIB}"' MOTIFHOME=${LOCALBASE}
 MOTIF_USES=		motif
+NLS_MAKE_ARGS=		CONF_OPT_NLS=--enable-nls
+NLS_MAKE_ARGS_OFF=	CONF_OPT_NLS=--disable-nls
 NLS_USES=		gettext
 PERL_MAKE_ARGS=		CONF_OPT_PERL=--enable-perlinterp
 PERL_USES=		perl5
@@ -123,16 +125,6 @@ PLIST_SUB+=	GUI=""
 CTAGS_CMD=	exctags -R .
 .else
 CTAGS_CMD=	${FIND} . -type f \\| ${XARGS} ctags
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-MAKE_ARGS+=	CONF_OPT_NLS=--enable-nls
-.else
-MAKE_ARGS+=	CONF_OPT_NLS=--disable-nls
-.endif
-
-.if ${PORT_OPTIONS:MGNOME}
-PKGNAMESUFFIX+=	-gnome2
 .endif
 
 .include <bsd.port.pre.mk>
