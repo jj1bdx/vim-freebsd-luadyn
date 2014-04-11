@@ -1,9 +1,9 @@
 # Created by: David O'Brien <obrien@cs.ucdavis.edu>
-# $FreeBSD: head/editors/vim/Makefile 349847 2014-04-01 12:31:25Z sunpoet $
+# $FreeBSD: head/editors/vim/Makefile 350691 2014-04-09 12:39:25Z sunpoet $
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES?=	editors
 MASTER_SITES=	VIM:source \
 		${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|}:patch \
@@ -37,10 +37,10 @@ REINPLACE_ARGS=	-i ''
 USES=		iconv pkgconfig shebangfix tar:bzip2
 WANT_GNOME=	yes
 
-PATCHLEVEL=	229
+PATCHLEVEL=	240
 PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
-POSTPONED_PATCHES=	064 087 147	# patch files postponed to apply in post-patch:
-SKIPPED_PATCHES=	208		# patch files to be skipped
+POSTPONED_PATCHES=	064 087 147	# patch files postponed to be applied in post-patch:
+SKIPPED_PATCHES=	208		# patch files skipped
 .for p in ${POSTPONED_PATCHES}
 DISTFILES+=	${PORTVERSION:R}.${p}:patch
 .endfor
@@ -149,7 +149,7 @@ post-patch:
 
 pre-configure:
 	@${CP} ${WRKSRC}/src/config.mk.dist ${WRKSRC}/src/auto/config.mk
-	@(cd ${WRKSRC}/src/ && ${MAKE} distclean)
+	@(cd ${WRKSRC}/src/ && ${MAKE_CMD} distclean)
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		-e 's|\$$gtk_config_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
 		-e 's|\$$gtk_config_exec_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
@@ -159,7 +159,7 @@ pre-configure:
 .endif
 
 post-configure:
-	@(cd ${WRKSRC}/src/ && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} scratch config)
+	@(cd ${WRKSRC}/src/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} scratch config)
 	@${REINPLACE_CMD} -e 's|#define HAVE_SYSINFO 1|/* #undef HAVE_SYSINFO */|' ${WRKSRC}/src/auto/config.h
 
 post-install:
