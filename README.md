@@ -1,6 +1,8 @@
 # FreeBSD vim experimental port for adding if\_lua
 
-* _Note well:_ as of 4-APR-2014, this repository is frozen. If any Lua plugin related bug happens again, this repository will be reactivated.  Always try the FreeBSD Port `editors/vim` first, and do not forget to send the problem reports.
+* _Note well:_ as of 10-APR-2014, the contents of this repository are the same as the original `editors/vim` Port. If any Lua plugin related bug happens again, this repository will be reactivated.  Always try the FreeBSD Port `editors/vim` first, and do not forget to send the problem reports by `send-pr`.
+
+* 10-APR-2014: updated to editors/vim 7.4.240 port r350691.
 
 * 4-APR-2014: updated to editors/vim 7.4.229\_1 port r349847.
 
