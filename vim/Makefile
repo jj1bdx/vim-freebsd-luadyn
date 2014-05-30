@@ -1,5 +1,5 @@
 # Created by: David O'Brien <obrien@cs.ucdavis.edu>
-# $FreeBSD: head/editors/vim/Makefile 354670 2014-05-20 19:32:39Z tijl $
+# $FreeBSD: head/editors/vim/Makefile 355254 2014-05-25 17:26:18Z sunpoet $
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
@@ -39,7 +39,7 @@ REINPLACE_ARGS=	-i ''
 USES=		iconv pkgconfig shebangfix tar:bzip2
 WANT_GNOME=	yes
 
-PATCHLEVEL=	295
+PATCHLEVEL=	307
 PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
 #POSTPONED_PATCHES=	064 087 147	# patch files postponed to be applied in post-patch:
 SKIPPED_PATCHES=	208		# patch files skipped
