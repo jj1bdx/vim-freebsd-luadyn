@@ -1,9 +1,9 @@
 # Created by: David O'Brien <obrien@cs.ucdavis.edu>
-# $FreeBSD: head/editors/vim/Makefile 364341 2014-08-08 03:40:03Z sunpoet $
+# $FreeBSD: head/editors/vim/Makefile 367261 2014-09-04 13:10:09Z sunpoet $
 
 PORTNAME=	vim
 PORTVERSION=	7.4.${PATCHLEVEL}
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	editors
 MASTER_SITES=	VIM:source \
 		${MASTER_SITE_VIM:S|unix|patches/${PORTVERSION:R}|}:patch \
@@ -36,10 +36,10 @@ MAKE_ARGS+=	CC="${CC}" CONF_ARGS="--prefix=${PREFIX} ${CSCOPE_ARG}" STRIP="${STR
 PATCH=		${LOCALBASE}/bin/gpatch
 PATCH_DIST_ARGS=--batch --directory ${WRKSRC} --forward --quiet --remove-empty-files ${PATCH_DIST_STRIP}
 REINPLACE_ARGS=	-i ''
-USES=		iconv pkgconfig shebangfix tar:bzip2
+USES=		cpe iconv pkgconfig shebangfix tar:bzip2
 WANT_GNOME=	yes
 
-PATCHLEVEL=	398
+PATCHLEVEL=	430
 PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
 #POSTPONED_PATCHES=	064 087 147	# patch files postponed to be applied in post-patch:
 SKIPPED_PATCHES=	208 356		# patch files skipped
@@ -60,6 +60,8 @@ PLIST_SUB=	VIM_VER=${VIM_VER}
 PORTDATA=	*
 
 VIM_VER=	${PORTNAME}${PORTVERSION:R:S/.//g}
+
+CPE_VERSION=	${PORTVERSION:R}
 
 SLAVEDIRS=	editors/vim-lite
 
@@ -105,7 +107,7 @@ NLS_MAKE_ARGS_OFF=	CONF_OPT_NLS=--disable-nls
 NLS_USES=		gettext
 PERL_MAKE_ARGS=		CONF_OPT_PERL=--enable-perlinterp
 PERL_USES=		perl5
-PYTHON_USE=		PYTHON=yes
+PYTHON_USES=		python
 RUBY_MAKE_ARGS=		CONF_OPT_RUBY=--enable-rubyinterp
 RUBY_USE=		RUBY=yes
 TCL_MAKE_ARGS=		CONF_OPT_TCL="--enable-tclinterp --with-tclsh=tclsh${TCL_VER}"
