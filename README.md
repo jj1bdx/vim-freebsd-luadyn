@@ -4,7 +4,8 @@
 
 ## Updating notes
 
-* 15-OCT-2014: updated to editors/vim 7.4.430\_2 port 367751
+* 25-NOV-2014: updated to editors/vim 7.4.518 port r373363.
+* 15-OCT-2014: updated to editors/vim 7.4.430\_2 port r367751.
 * 5-SEP-2014: updated to editors/vim 7.4.430 port r367261.
 * 9-AUG-2014: updated to editors/vim 7.4.398 port r364341.
 * 4-AUG-2014: updated to editors/vim 7.4.389 port r363785.
