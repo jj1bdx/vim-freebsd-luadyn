@@ -1,4 +1,10 @@
-# FreeBSD vim experimental port for adding if\_lua
+# This archive is historic: please use FreeBSD official Ports
+
+3-JUL-2015: I will not delete and keep this archive for historic reference purpose, but I will no longer maintain this archive either.
+
+## For historic purpose only: FreeBSD vim experimental port for adding if\_lua
+
+*Note: this archive is no longer maintained*
 
 * _Note well:_ Since 28-FEB-2014, the contents of this repository are the same as the original `editors/vim` Port. If any Lua plugin related bug happens again, editing this repository will be reactivated.  Always try the FreeBSD Port `editors/vim` first, and do not forget to send the problem reports by `send-pr`.
 
